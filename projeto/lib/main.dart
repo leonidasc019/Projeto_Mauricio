@@ -1,7 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto/screens/escrever_diario.dart';
+import 'package:projeto/widgets/login.dart';
+import 'firebase_options.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -9,14 +18,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PaginaEscrever(),
+      home: const PaginaLogin(),
       //  initialRoute: '/home',
       routes: {
-        '/home': (context) => const PaginaEscrever(),
-        //'/second': (context) => const PaginaProcedimento(),
-        // '/three': (context) => const Cadastro(),
-        // '/four': (context) => const Saiba_mais(),
-        // '/five': (context) => const Agendamento(),
+        '/home': (context) => const PaginaLogin(),
+        '/second': (context) => const PaginaEscrever(),
       },
     );
   }
