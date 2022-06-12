@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto/screens/escrever_diario.dart';
 import 'package:projeto/widgets/login.dart';
-
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       //  initialRoute: '/home',
       routes: {
         '/home': (context) => const PaginaLogin(),
+        '/second': (context) => const PaginaEscrever(),
       },
     );
   }
