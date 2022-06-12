@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/provider/diario_provider.dart';
+import 'package:provider/provider.dart';
+
+import '../models/diarios.dart';
+import 'home_screen.dart';
 
 class PaginaEscrever extends StatefulWidget {
   const PaginaEscrever({Key? key}) : super(key: key);
@@ -10,6 +15,9 @@ class PaginaEscrever extends StatefulWidget {
 final _formKey = GlobalKey<FormState>();
 String? select_texto;
 String? select_data;
+
+TextEditingController textodata = TextEditingController();
+TextEditingController textodiario = TextEditingController();
 
 final logo = Image.asset('images/diario_img_login.png');
 
@@ -60,10 +68,11 @@ class _PaginaEscreverState extends State<PaginaEscrever> {
                 ),
                 const Expanded(child: SizedBox()),
                 ConstrainedBox(
-                  constraints: const BoxConstraints(maxHeight: 280),
-                  child: const TextField(
+                  constraints: const BoxConstraints(maxHeight: 230),
+                  child: TextFormField(
                     maxLines: null,
-                    decoration: InputDecoration(
+                    controller: textodiario,
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Escreva Seu texto',
                     ),
@@ -72,8 +81,9 @@ class _PaginaEscreverState extends State<PaginaEscrever> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                 ),
-                const TextField(
-                  decoration: InputDecoration(
+                TextFormField(
+                  controller: textodata,
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Insira a Data',
                   ),
@@ -83,16 +93,22 @@ class _PaginaEscreverState extends State<PaginaEscrever> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    // Mostra o Popup
-                    //
+                    Diario novodiario =
+                        Diario(data: textodata.text, texto: textodiario.text);
+                    context.read<DiarioProvider>().addToList2(novodiario);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ));
                   },
                   icon: const Icon(Icons
                       .save), //Icone que será utilizado dentro do elevated Button
                   label: const Text("Salvar"), //Texto dentro do botão
                   style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(17, 90, 9, 9),
-                    onPrimary: const Color.fromARGB(
-                        255, 0, 0, 0), //Cor do Background do botão
+                    primary: const Color.fromARGB(255, 247, 196, 130),
+                    onPrimary: const Color.fromARGB(255, 0, 0, 0),
+                    //Cor do Background do botão
                   ),
                 ),
               ]),

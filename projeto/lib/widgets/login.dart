@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../authentication.dart';
 
 class PaginaLogin extends StatefulWidget {
-  const PaginaLogin({ Key? key }) : super(key: key);
+  const PaginaLogin({Key? key}) : super(key: key);
 
   @override
   State<PaginaLogin> createState() => _PaginaLoginState();
@@ -20,19 +20,19 @@ class _PaginaLoginState extends State<PaginaLogin> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                Colors.deepOrange.shade400.withOpacity(1),
-                Colors.orange.withOpacity(0.6),
-                Colors.deepOrangeAccent.shade400.withOpacity(0.9)
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter),
+          gradient: LinearGradient(colors: [
+            Colors.deepOrange.shade400.withOpacity(1),
+            Colors.orange.withOpacity(0.6),
+            Colors.deepOrangeAccent.shade400.withOpacity(0.9)
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(width: 500, child: logo,),
+            SizedBox(
+              width: 500,
+              child: logo,
+            ),
             Form(
               key: _formKey,
               child: Column(
@@ -43,9 +43,9 @@ class _PaginaLoginState extends State<PaginaLogin> {
                       validator: (value) => EmailValidator.validate(value!)
                           ? null
                           : "Entre com email valido.",
-                        onSaved: (value){
-                          email=value;
-                        },
+                      onSaved: (value) {
+                        email = value;
+                      },
                       maxLines: 1,
                       decoration: const InputDecoration(
                         filled: true,
@@ -61,7 +61,6 @@ class _PaginaLoginState extends State<PaginaLogin> {
                       ),
                     ),
                   ),
-                  
                   Container(
                     padding: const EdgeInsets.all(12),
                     child: TextFormField(
@@ -72,9 +71,9 @@ class _PaginaLoginState extends State<PaginaLogin> {
                         return null;
                       },
                       maxLines: 1,
-                      onSaved: (value){
-                          password=value;
-                        },
+                      onSaved: (value) {
+                        password = value;
+                      },
                       obscureText: true,
                       decoration: const InputDecoration(
                         filled: true,
@@ -99,7 +98,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();       
+                            _formKey.currentState!.save();
                             AuthenticationHelper()
                                 .signIn(email: email!, password: password!)
                                 .then((result) {
