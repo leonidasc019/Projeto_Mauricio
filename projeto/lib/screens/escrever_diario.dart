@@ -11,7 +11,7 @@ final _formKey = GlobalKey<FormState>();
 String? select_texto;
 String? select_data;
 
-final logo = Image.asset('images/diario.png');
+final logo = Image.asset('images/diario_img_login.png');
 
 class _PaginaEscreverState extends State<PaginaEscrever> {
   @override
@@ -21,9 +21,9 @@ class _PaginaEscreverState extends State<PaginaEscrever> {
             // margin: const EdgeInsets.all(4),
             decoration: const BoxDecoration(
               gradient: LinearGradient(colors: [
-                Color.fromARGB(255, 83, 80, 239),
-                Color.fromARGB(255, 120, 138, 240),
-                Color.fromARGB(255, 180, 209, 243)
+                Color.fromARGB(255, 255, 112, 67),
+                Color.fromARGB(255, 255, 152, 0),
+                Color.fromARGB(255, 255, 61, 0)
               ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
             ),
             child: Center(
@@ -32,16 +32,16 @@ class _PaginaEscreverState extends State<PaginaEscrever> {
                   margin: EdgeInsets.all(4),
                 ),
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                 ),
                 SizedBox(
-                  width: 130,
+                  width: 150,
                   child: Column(
                     children: [
                       logo,
                       const Padding(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 6, vertical: 15),
+                            EdgeInsets.symmetric(horizontal: 6, vertical: 5),
                       ),
                       const Text(
                         'Diário Virtual',
@@ -90,8 +90,10 @@ class _PaginaEscreverState extends State<PaginaEscrever> {
                       .save), //Icone que será utilizado dentro do elevated Button
                   label: const Text("Salvar"), //Texto dentro do botão
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.blueAccent //Cor do Background do botão
-                      ),
+                    primary: const Color.fromARGB(17, 90, 9, 9),
+                    onPrimary: const Color.fromARGB(
+                        255, 0, 0, 0), //Cor do Background do botão
+                  ),
                 ),
               ]),
             )));
