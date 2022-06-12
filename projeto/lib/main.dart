@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const PaginaLogin(),
-      //  initialRoute: '/home',
       routes: {
         '/home': (context) => const PaginaLogin(),
         '/second': (context) => const HomeScreen(),
