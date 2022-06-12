@@ -35,7 +35,7 @@ class _PaginaEscreverState extends State<PaginaEscrever> {
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                 ),
                 SizedBox(
-                  width: 155,
+                  width: 150,
                   child: Column(
                     children: [
                       logo,
