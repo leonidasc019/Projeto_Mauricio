@@ -5,6 +5,9 @@ class AuthenticationHelper {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   get user => _auth.currentUser;
+  String getEmail () {
+    return _auth.currentUser!.email.toString();
+  }
 
   Future<String?> agendamento({
     required String procedimento,
@@ -15,12 +18,9 @@ class AuthenticationHelper {
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection('agendamentos');
-      await users.doc(_auth.currentUser!.uid).set({
-        'nome': nome,
-        'procedimento': procedimento,
-        'data': data,
-        'horario': hora
-      });
+      await users
+          .doc(_auth.currentUser!.uid)
+          .set({'nome':nome, 'procedimento': procedimento, 'data': data, 'horario': hora});
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
@@ -42,12 +42,9 @@ class AuthenticationHelper {
             password: password,
           )
           .then((data) => {
-                users.doc(data.user!.uid).set({
-                  'name': name,
-                  'telefone': telefone,
-                  'email': email,
-                  'senha': password
-                })
+                users
+                    .doc(data.user!.email)
+                    .set({'name': name, 'telefone': telefone, 'email': email, 'senha': password})
               });
 
       return null;
@@ -75,5 +72,9 @@ class AuthenticationHelper {
   //Logout
   Future<void> signOut() async {
     await _auth.signOut();
+  }
+
+  String getUsuario(){
+    return _auth.currentUser!.uid.toString();
   }
 }
